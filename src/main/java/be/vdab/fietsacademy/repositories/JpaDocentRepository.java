@@ -28,6 +28,7 @@ public class JpaDocentRepository implements DocentRepository {
     @Override
     public void create(Docent docent) {
         manager.persist(docent);
+
     }
 
     @Override
@@ -77,5 +78,7 @@ public class JpaDocentRepository implements DocentRepository {
         return manager.createNamedQuery("Docent.algemeneOpslag")
                 .setParameter("factor", factor).executeUpdate();
     }
+
+
 
 }

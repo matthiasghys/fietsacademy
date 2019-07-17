@@ -3,29 +3,27 @@ package be.vdab.fietsacademy.Domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Table(name= "cursussen")
-@DiscriminatorColumn(name = "soort")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Cursus implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
     private String naam;
 
     protected Cursus() {
 
     }
 
-    private Cursus(long id, String naam) {
-        this.id = id;
+    public Cursus(String naam) {
         this.naam = naam;
+        id = UUID.randomUUID().toString();
     }
 
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

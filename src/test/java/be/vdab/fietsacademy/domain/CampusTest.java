@@ -1,0 +1,46 @@
+package be.vdab.fietsacademy.domain;
+
+import be.vdab.fietsacademy.Domain.Adres;
+import be.vdab.fietsacademy.Domain.Campus;
+import be.vdab.fietsacademy.Domain.Docent;
+import be.vdab.fietsacademy.Domain.Geslacht;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.math.BigDecimal;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNullPointerException;
+
+public class CampusTest {
+    private Docent docent;
+    private Campus campus1;
+    private Campus campus2;
+
+    @Before
+    public void before(){
+        campus1 = new Campus("test", new Adres("test", "test", "test", "test"));
+        campus2 = new Campus("test2", new Adres("test2", "test2", "test2", "test2"));
+        docent = new Docent("test", "test", BigDecimal.TEN, "test@fietsacademy.be", Geslacht.MAN, campus1);
+    }
+
+    @Test
+    public void campus1IsDeCampusVanDocent1(){
+        assertThat(docent.getCampus()).isEqualTo(campus1);
+        assertThat(campus1.getDocenten()).containsOnly(docent);
+    }
+
+    @Test
+    public void docent1VerhuistNaarCampus2(){
+        assertThat(campus2.add(docent)).isTrue();
+        assertThat(campus1.getDocenten()).isEmpty();
+        assertThat(campus2.getDocenten()).containsOnly(docent);
+        assertThat(docent.getCampus()).isEqualTo(campus2);
+    }
+
+    @Test
+    public void eenNullDocentToevoegenMislukt(){
+        assertThatNullPointerException().isThrownBy(()-> campus1.add(null));
+    }
+
+}

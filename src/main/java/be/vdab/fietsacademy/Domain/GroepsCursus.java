@@ -2,9 +2,10 @@ package be.vdab.fietsacademy.Domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 @Entity
-@DiscriminatorValue("G")
+@Table(name="groepscursussen")
 public class GroepsCursus extends Cursus{
     private static final long serialVersionUID= 1L;
     private LocalDate van;
@@ -12,7 +13,8 @@ public class GroepsCursus extends Cursus{
 
     protected GroepsCursus(){}
 
-    public GroepsCursus(LocalDate van, LocalDate tot) {
+    public GroepsCursus(String naam, LocalDate van, LocalDate tot) {
+        super(naam);
         this.van = van;
         this.tot = tot;
     }
