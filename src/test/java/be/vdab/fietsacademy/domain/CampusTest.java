@@ -1,9 +1,5 @@
 package be.vdab.fietsacademy.domain;
 
-import be.vdab.fietsacademy.Domain.Adres;
-import be.vdab.fietsacademy.Domain.Campus;
-import be.vdab.fietsacademy.Domain.Docent;
-import be.vdab.fietsacademy.Domain.Geslacht;
 import org.junit.Before;
 import org.junit.Test;
 

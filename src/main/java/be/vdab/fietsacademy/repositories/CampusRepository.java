@@ -1,6 +1,6 @@
 package be.vdab.fietsacademy.repositories;
 
-import be.vdab.fietsacademy.Domain.Campus;
+import be.vdab.fietsacademy.domain.Campus;
 
 import java.util.Optional;
 

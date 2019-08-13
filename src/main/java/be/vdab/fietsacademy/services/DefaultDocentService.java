@@ -1,6 +1,6 @@
 package be.vdab.fietsacademy.services;
 
-import be.vdab.fietsacademy.Domain.Docent;
+import be.vdab.fietsacademy.domain.Docent;
 import be.vdab.fietsacademy.exceptions.DocentNietGevondenException;
 import be.vdab.fietsacademy.repositories.DocentRepository;
 import org.springframework.stereotype.Service;

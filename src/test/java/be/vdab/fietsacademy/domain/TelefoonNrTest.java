@@ -1,6 +1,5 @@
 package be.vdab.fietsacademy.domain;
 
-import be.vdab.fietsacademy.Domain.TelefoonNr;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;

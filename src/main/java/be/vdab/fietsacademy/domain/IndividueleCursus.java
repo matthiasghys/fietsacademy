@@ -1,6 +1,5 @@
-package be.vdab.fietsacademy.Domain;
+package be.vdab.fietsacademy.domain;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 

@@ -1,10 +1,7 @@
 package be.vdab.fietsacademy.domain;
 
-import be.vdab.fietsacademy.Domain.Adres;
-import be.vdab.fietsacademy.Domain.Campus;
-import be.vdab.fietsacademy.Domain.Docent;
-import be.vdab.fietsacademy.Domain.Geslacht;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -18,6 +15,7 @@ public class DocentTest {
     private Campus campus1;
     private Docent nogEensDocent1;
     private Campus campus2;
+    private Verantwoordelijkheid verantwoordelijkheid;
 
 
     @Before
@@ -27,13 +25,14 @@ public class DocentTest {
         docent1 = new Docent("test", "test", WEDDE, "test@fietsacademy.be", Geslacht.MAN, campus1);
         nogEensDocent1 = new Docent("test", "test", WEDDE, "test@fietsacademy.be", Geslacht.MAN, campus1);
         docent2 = new Docent("test2", "test", WEDDE, "test2@fietsacademy.be", Geslacht.MAN, campus1);
+        verantwoordelijkheid = new Verantwoordelijkheid("EHBO");
 
     }
 
     @Test
     public void opslag() {
         docent1.opslag(BigDecimal.TEN);
-        assertThat(docent1.getWedde()).isEqualByComparingTo("2200");
+        assertThat(docent1.getWedde()).isEqualByComparingTo("220");
     }
 
     @Test
@@ -153,6 +152,20 @@ public class DocentTest {
     @Test
     public void eenNullCampusInDeSetterMislukt(){
         assertThatNullPointerException().isThrownBy(()->docent1.setCampus(null));
+    }
+
+    @Test
+    public void verantwoordelijkheidToevoegen(){
+        assertThat(docent1.add(verantwoordelijkheid)).isTrue();
+        assertThat(docent1.getVerantwoordelijkheden()).containsOnly(verantwoordelijkheid);
+        assertThat(verantwoordelijkheid.getDocenten()).containsOnly(docent1);
+    }
+
+    public void verantwoordelijkheidVerwijderen(){
+        assertThat(docent1.add(verantwoordelijkheid)).isTrue();
+        assertThat(docent1.remove(verantwoordelijkheid)).isTrue();
+        assertThat(docent1.getVerantwoordelijkheden()).isEmpty();
+        assertThat(verantwoordelijkheid.getDocenten()).isEmpty();
     }
 
 

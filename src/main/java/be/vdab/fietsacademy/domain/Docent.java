@@ -1,4 +1,4 @@
-package be.vdab.fietsacademy.Domain;
+package be.vdab.fietsacademy.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,15 +27,17 @@ public class Docent implements Serializable {
     @Column(name = "bijnaam")
     private Set<String> bijnamen;
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="campusid")
+    @JoinColumn(name = "campusid")
     private Campus campus;
+    @ManyToMany(mappedBy = "docenten")
+    private Set<Verantwoordelijkheid> verantwoordelijkheden = new LinkedHashSet<>();
 
 
     protected Docent() {
 
     }
 
-    public Docent(String voornaam, String familienaam, BigDecimal wedde, String emailAdres, Geslacht geslachtn, Campus campus) {
+    public Docent(String voornaam, String familienaam, BigDecimal wedde, String emailAdres, Geslacht geslacht, Campus campus) {
         this.voornaam = voornaam;
         this.familienaam = familienaam;
         this.wedde = wedde;
@@ -45,15 +47,15 @@ public class Docent implements Serializable {
         setCampus(campus);
     }
 
-     public Campus getCampus() {
-    return campus;
-     }
+    public Campus getCampus() {
+        return campus;
+    }
 
-     public void setCampus(Campus campus) {
-       if(!campus.getDocenten().contains(this)){
-           campus.add(this);
-       }
-       this.campus = campus;
+    public void setCampus(Campus campus) {
+        if (!campus.getDocenten().contains(this)) {
+            campus.add(this);
+        }
+        this.campus = campus;
     }
 
     public long getId() {
@@ -85,7 +87,7 @@ public class Docent implements Serializable {
             throw new IllegalArgumentException();
         }
         BigDecimal factor = BigDecimal.ONE.add(percentage.divide(BigDecimal.valueOf(100)));
-        wedde = wedde.multiply(factor, new MathContext(2, RoundingMode.HALF_UP));
+        wedde = wedde.multiply(factor);
     }
 
     public Set<String> getBijnamen() {
@@ -108,14 +110,38 @@ public class Docent implements Serializable {
         if (!(object instanceof Docent)) {
             return false;
         }
-        if(emailAdres==null){
+        if (emailAdres == null) {
             return false;
         }
-        return emailAdres.equalsIgnoreCase(((Docent)object).emailAdres);
+        return emailAdres.equalsIgnoreCase(((Docent) object).emailAdres);
     }
+
     @Override
     public int hashCode() {
-        return emailAdres ==null ? 0 : emailAdres.toLowerCase().hashCode();
+        return emailAdres == null ? 0 : emailAdres.toLowerCase().hashCode();
     }
+
+    public boolean add(Verantwoordelijkheid verantwoordelijkheid) {
+        boolean toegevoegd = verantwoordelijkheden.add(verantwoordelijkheid);
+        if (! verantwoordelijkheid.getDocenten().contains(this)){
+            verantwoordelijkheid.add(this);
+        }
+        return toegevoegd;
+    }
+
+    public boolean remove(Verantwoordelijkheid verantwoordelijkheid) {
+        boolean verwijderd = verantwoordelijkheden.remove(verantwoordelijkheid);
+        if (verantwoordelijkheid.getDocenten().contains(this)){
+            verantwoordelijkheid.remove(this);
+        }
+        return verwijderd;
+    }
+
+    public Set<Verantwoordelijkheid> getVerantwoordelijkheden() {
+        return Collections.unmodifiableSet(verantwoordelijkheden);
+
+    }
+
+
 
 }

@@ -1,10 +1,10 @@
 package be.vdab.fietsacademy.repositories;
 
 
-import be.vdab.fietsacademy.Domain.Adres;
-import be.vdab.fietsacademy.Domain.Campus;
-import be.vdab.fietsacademy.Domain.Docent;
-import be.vdab.fietsacademy.Domain.Geslacht;
+import be.vdab.fietsacademy.domain.Adres;
+import be.vdab.fietsacademy.domain.Campus;
+import be.vdab.fietsacademy.domain.Docent;
+import be.vdab.fietsacademy.domain.Geslacht;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -149,6 +149,7 @@ public class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringCo
 
     @Test
     public void bijnaamToevoegen() {
+        entityManager.persist(campus);
         repository.create(docent);
         docent.addBijnaam("test");
         entityManager.flush();

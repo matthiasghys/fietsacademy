@@ -1,14 +1,13 @@
 package be.vdab.fietsacademy.repositories;
 
-import be.vdab.fietsacademy.Domain.Cursus;
-import be.vdab.fietsacademy.Domain.GroepsCursus;
-import be.vdab.fietsacademy.Domain.IndividueleCursus;
+import be.vdab.fietsacademy.domain.Cursus;
+import be.vdab.fietsacademy.domain.GroepsCursus;
+import be.vdab.fietsacademy.domain.IndividueleCursus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;

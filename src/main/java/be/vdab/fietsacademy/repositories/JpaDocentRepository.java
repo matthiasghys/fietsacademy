@@ -1,12 +1,11 @@
 package be.vdab.fietsacademy.repositories;
 
-import be.vdab.fietsacademy.Domain.Docent;
+import be.vdab.fietsacademy.domain.Docent;
 import be.vdab.fietsacademy.queryresults.AantalDocentenPerWedde;
 import be.vdab.fietsacademy.queryresults.IdEnEmailAdres;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.print.Doc;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;

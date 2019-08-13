@@ -1,9 +1,9 @@
 package be.vdab.fietsacademy.services;
 
-import be.vdab.fietsacademy.Domain.Adres;
-import be.vdab.fietsacademy.Domain.Campus;
-import be.vdab.fietsacademy.Domain.Docent;
-import be.vdab.fietsacademy.Domain.Geslacht;
+import be.vdab.fietsacademy.domain.Adres;
+import be.vdab.fietsacademy.domain.Campus;
+import be.vdab.fietsacademy.domain.Docent;
+import be.vdab.fietsacademy.domain.Geslacht;
 import be.vdab.fietsacademy.exceptions.DocentNietGevondenException;
 import be.vdab.fietsacademy.repositories.DocentRepository;
 import org.junit.Before;

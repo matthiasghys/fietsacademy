@@ -1,4 +1,4 @@
-package be.vdab.fietsacademy.Domain;
+package be.vdab.fietsacademy.domain;
 
 import javax.persistence.*;
 import java.util.Collections;
@@ -64,6 +64,10 @@ public class Campus {
             docent.setCampus(this);
         }
         return toegevoegd;
+    }
+
+    public boolean addTel (TelefoonNr telefoonNr){
+        return telefoonNrs.add(telefoonNr);
     }
 
     @Override

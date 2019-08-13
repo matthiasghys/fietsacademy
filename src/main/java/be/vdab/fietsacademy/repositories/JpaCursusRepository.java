@@ -1,6 +1,6 @@
 package be.vdab.fietsacademy.repositories;
 
-import be.vdab.fietsacademy.Domain.Cursus;
+import be.vdab.fietsacademy.domain.Cursus;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
